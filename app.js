@@ -18,27 +18,18 @@ if (process.env.VCAP_SERVICES) {
 	var iotService = config['iotf-service'];
 	for (var index in iotService) {
 		if (iotService[index].name === serviceName) {
-			//console.log(iotService[index].credentials);
 			credentials = iotService[index].credentials;
 		}
 	}
 } else {
 	console.log("ERROR: IoT Service was not bound!");
-	//return;
+	return;
 }
 
-/*
 var basicConfig = {
 	org: credentials.org,
 	apiKey: credentials.apiKey,
 	apiToken: credentials.apiToken
-};
-*/
-
-var basicConfig = {
-	org: "utx8fq",
-	apiKey: "a-utx8fq-au4ny6djl3",
-	apiToken: "Xf?GaiZU&ncv2K9&NK"
 };
 
 var options = {
