@@ -1,0 +1,11 @@
+applications:
+- services:
+  - discover-iot-try-service
+  host: discover-iot-try
+  name: discover-iot-try
+  disk: 128M
+  command: node app.js
+  path: .
+  domain: mybluemix.net
+  memory: 64M
+  instances: 1

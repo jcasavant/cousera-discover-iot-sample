@@ -1,2 +1,7 @@
-# discover-iot-sample
-Sample application from Discover IoT
+# iot-play-sample
+
+Sample application for IBM IoT Foundation.
+
+(https://discover-iot.mybluemix.net)
+
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm-messaging/iot-play-sample)
