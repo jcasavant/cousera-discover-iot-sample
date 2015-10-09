@@ -11,6 +11,7 @@ var appEnv = cfenv.getAppEnv();
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+var config = null;
 var credentials = null;
 if (process.env.VCAP_SERVICES) {
 	config = JSON.parse(process.env.VCAP_SERVICES);
