@@ -1,6 +1,6 @@
-# iot-play-sample
+# discover-iot-sample
 
-Sample application for IBM IoT Foundation.
+Sample application for connecting a smartphone to IBM IoT Foundation.
 
 (https://discover-iot.mybluemix.net)
 
