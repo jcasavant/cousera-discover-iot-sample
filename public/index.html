@@ -8,16 +8,28 @@
 		<div id="main" class="main">
 			<h1>IoT Phone Sample</h1>
 			<h3>Congratulations, you have deployed the IoT smartphone sample application!</h3>
-			<p>If you used the Deploy to Bluemix button to get here, then you will have an IoT Foundation organization created and ready to received your data.  Visit the following links to get started:</p>
+			<p>If you used the Deploy to Bluemix button to get here, then you will have an IoT Foundation organization created and ready to receive your data.  Visit the following links to get started:</p>
 			<ul style="text-align: left;">
-				<li style="text-align: left;"><a href="http://internetofthings.ibmcloud.com">IoT Foundation Dashboard</a></li>
+				<li style="text-align: left;"><a id="iot-link" href="https://internetofthings.ibmcloud.com">IoT Foundation Dashboard</a></li>
 				<li style="text-align: left;"><a href="iot-phone/">Smartphone application (view on mobile device)</a></li>
 			</ul>
 		</div>
 	</div>
 	<!-- Please do not change the order of these links as some depend on each other -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/mqttws31.js"></script>
-	<script type="text/javascript" src="js/device.js"></script>
+	<script type="text/javascript" src="iot-phone/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$.ajax({
+			url: "/credentials",
+			type: "GET",
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			success: function(response) {
+				$("#iot-link").attr("href", "https://" + response.org + ".internetofthings.ibmcloud.com/dashboard/#/overview");
+			},
+			error: function(xhr, status, error) {
+				console.error("Could not fetch organization information.");
+			}
+		});
+	</script>
 </body>
 </html>
