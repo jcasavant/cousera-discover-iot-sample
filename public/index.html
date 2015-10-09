@@ -9,15 +9,16 @@
 			<h1>IoT Phone Sample</h1>
 			<h3>Congratulations, you have deployed the IoT smartphone sample application!</h3>
 			<p>If you used the Deploy to Bluemix button to get here, then you will have an IoT Foundation organization created and ready to receive your data.  Visit the following links to get started:</p>
-			<ul style="text-align: left;">
-				<li style="text-align: left;"><a id="iot-link" href="https://internetofthings.ibmcloud.com">IoT Foundation Dashboard</a></li>
-				<li style="text-align: left;"><a href="iot-phone/">Smartphone application (view on mobile device)</a></li>
-			</ul>
+			<ol style="text-align: left;">
+				<li style="text-align: left; padding-bottom: 10px;">Visit your <a id="iot-link" href="https://internetofthings.ibmcloud.com">IoT Foundation Dashboard</a></li>
+				<li style="text-align: left;">Using a smartphone, load the <a href="iot-phone/">app</a>: <span style="margin-left: 20px; letter-spacing: 1px; font-weight: bold;" id="mobileappurl"></span></li>
+			</ol>
 		</div>
 	</div>
 	<!-- Please do not change the order of these links as some depend on each other -->
 	<script type="text/javascript" src="iot-phone/js/jquery.min.js"></script>
 	<script type="text/javascript">
+		$("#mobileappurl").html("http://" + window.location.hostname + "/iot-phone");
 		$.ajax({
 			url: "/credentials",
 			type: "GET",
