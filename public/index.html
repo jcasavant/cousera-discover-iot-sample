@@ -1,31 +1,36 @@
 <html>
 <head>
 	<title>IoT Play Sample</title>
-	<link rel='stylesheet' href='iot-phone/stylesheets/device.css'/>
+	<link rel='stylesheet' href='stylesheets/styles.css'/>
 </head>
 <body>
 	<div class="outer-main">
 		<div id="main" class="main">
-			<h1>IoT Phone Sample</h1>
-			<h3>Congratulations, you have deployed the IoT smartphone sample application!</h3>
-			<p>If you used the Deploy to Bluemix button to get here, then you will have an IoT Foundation organization created and ready to receive your data.  Visit the following links to get started:</p>
-			<ol style="text-align: left;">
-				<li style="text-align: left; padding-bottom: 10px;">Visit your <a id="iot-link" href="https://internetofthings.ibmcloud.com">IoT Foundation Dashboard</a></li>
-				<li style="text-align: left;">Using a smartphone, load the <a href="iot-phone/">app</a>: <span style="margin-left: 20px; letter-spacing: 1px; font-weight: bold;" id="mobileappurl"></span></li>
-			</ol>
+			<div class="lines"><h1>IoT Foundation Example App</h1></div>
+			<h2>Congratulations, you have deployed the IoT Foundation example application!</h2>
+			<p class="lead">If you used the Deploy to Bluemix button to get here, then you already have an IoT Foundation organization created and ready to receive your data.  Here's how to get started:</p>
+			<div class="step">
+				<h3>Step 1: Connect your Smartphone</h3>
+				<p>With your smartphone, visit the following link:&nbsp;&nbsp;&nbsp;&nbsp;<span style="margin-left: 20px; letter-spacing: 1px; font-weight: bold;" id="mobileappurl"></span></blockquote>
+			</div>
+			<div class="step">
+				<h3>Step 2: View your data</h3>
+				<p>Access your IoT Foundation dashboard to see the smartphone data.</p>
+				<p>The following link takes your to your Bluemix service; from there click <code>Launch Dashboard</code></p>
+				<a class="button" id="iot-link">Bluemix Service</a>
+			</div>
 		</div>
 	</div>
-	<!-- Please do not change the order of these links as some depend on each other -->
-	<script type="text/javascript" src="iot-phone/js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript">
 		$("#mobileappurl").html("http://" + window.location.hostname + "/iot-phone");
 		$.ajax({
-			url: "/credentials",
+			url: "/iotServiceLink",
 			type: "GET",
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function(response) {
-				$("#iot-link").attr("href", "https://" + response.org + ".internetofthings.ibmcloud.com/dashboard/#/overview");
+				$("#iot-link").attr("href", response.url);
 			},
 			error: function(xhr, status, error) {
 				console.error("Could not fetch organization information.");

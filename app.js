@@ -24,7 +24,6 @@ if (process.env.VCAP_SERVICES) {
 	}
 } else {
 	console.log("ERROR: IoT Service was not bound!");
-	return;
 }
 
 var basicConfig = {
@@ -44,6 +43,34 @@ var options = {
 
 app.get('/credentials', function(req, res) {
 	res.json(basicConfig);
+});
+
+app.get('/iotServiceLink', function(req, res) {
+	var options = {
+		host: basicConfig.org + '.internetofthings.ibmcloud.com',
+		port: 443,
+		headers: {
+		  'Content-Type': 'application/json'
+		},
+		auth: basicConfig.apiKey + ':' + basicConfig.apiToken,
+		method: 'GET',
+		path: 'api/v0002/'
+	}
+	var org_req = https.request(options, function(org_res) {
+		var str = '';
+		org_res.on('data', function(chunk) {
+			str += chunk;
+		});
+		org_res.on('end', function() {
+			try {
+				var org = JSON.parse(str);
+				var url = "https://console.ng.bluemix.net/#/resources/serviceGuid=" + org.bluemix.serviceInstanceGuid + "&orgGuid=" + org.bluemix.organizationGuid + "&spaceGuid=" + org.bluemix.spaceGuid;
+				res.json({ url: url });
+			} catch (e) { console.log("Something went wrong...", str); res.send(500); }
+			console.log("iotServiceLink end: ", str.toString());
+		});
+	}).on('error', function(e) { console.log("ERROR", e); });
+	org_req.end();
 });
 
 app.post('/registerDevice', function(req, res) {
