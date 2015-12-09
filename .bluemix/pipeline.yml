@@ -29,4 +29,5 @@ stages:
           organization: ${CF_ORGANIZATION}
           space: ${CF_SPACE}
           url: ${CF_TARGET_URL}
+          application: ${CF_APP}
 
