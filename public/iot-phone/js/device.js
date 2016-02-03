@@ -121,7 +121,7 @@
 
 	function onConnectFailure() {
 		// The device failed to connect. Let's try again in one second.
-		console.log("Could not connect to IoT Foundation! Trying again in one second.");
+		console.log("Could not connect to IBM Watson IoT Platform! Trying again in one second.");
 		setTimeout(connectDevice(), 1000);
 	}
 
@@ -132,7 +132,7 @@
 
 		changeConnectionStatusImage("images/connecting.svg");
 		document.getElementById("connection").innerHTML = "Connecting";
-		console.log("Connecting device to IoT Foundation...");
+		console.log("Connecting device to IBM Watson IoT Platform...");
 		window.client.connect({
 			onSuccess: onConnectSuccess,
 			onFailure: onConnectFailure,
