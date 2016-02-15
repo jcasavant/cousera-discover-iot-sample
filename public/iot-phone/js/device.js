@@ -31,10 +31,23 @@
 
 	var isConnected = false;
 
+	var last_sample = {};
+	var shifted_filter = {};
+	// High-pass filter to remove gravity offset from the acceleration waveforms
+	function filterOffset(sample, channel) {
+		if(sample === null || sample === undefined) return 0;
+		if(last_sample[channel] === undefined) last_sample[channel] = sample;
+		if(shifted_filter[channel] === undefined) shifted_filter[channel] = 0;
+		var shiftedFCL = shifted_filter[channel] + ((sample-last_sample[channel])*256);
+		shifted_filter[channel] = shiftedFCL - (shiftedFCL/256);
+		last_sample[channel] = sample;
+		return ((shifted_filter[channel]+128)/256);    
+	}
+
 	window.ondevicemotion = function(event) {
-		ax = parseFloat((event.acceleration.x || 0));
-		ay = parseFloat((event.acceleration.y || 0));
-		az = parseFloat((event.acceleration.z || 0));
+		ax = parseFloat((event.acceleration.x || filterOffset(event.accelerationIncludingGravity.x, "ax") || 0));
+		ay = parseFloat((event.acceleration.y || filterOffset(event.accelerationIncludingGravity.y, "ay") || 0));
+		az = parseFloat((event.acceleration.z || filterOffset(event.accelerationIncludingGravity.z, "az") || 0));
 
 		document.getElementById("accx").innerHTML = ax.toFixed(2);
 		document.getElementById("accy").innerHTML = ay.toFixed(2);
