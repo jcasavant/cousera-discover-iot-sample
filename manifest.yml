@@ -1,7 +1,6 @@
 applications:
 - services:
   - discover-iot-try-service
-  host: discover-iot-try
   name: discover-iot-try
   disk: 128M
   command: node app.js
