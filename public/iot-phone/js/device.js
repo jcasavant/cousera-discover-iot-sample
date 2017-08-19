@@ -77,7 +77,9 @@
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function(response) {
+                console.log("1");
 				console.log(response);
+                console.log("2");
 				window.iot_host = response.org + ".messaging.internetofthings.ibmcloud.com";
 				window.iot_port = 8883;
 				window.deviceId = prompt("Enter a unique ID for your device containing only letters and numbers:");
