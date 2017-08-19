@@ -79,7 +79,7 @@
 			success: function(response) {
 				console.log(response);
 				window.iot_host = response.org + ".messaging.internetofthings.ibmcloud.com";
-				window.iot_port = 1883;
+				window.iot_port = 8883;
 				window.deviceId = prompt("Enter a unique ID for your device containing only letters and numbers:");
 				window.password = prompt("Enter an 8-character password");
 				window.iot_clientid = "d:"+response.org+":iot-phone:"+window.deviceId;
@@ -150,7 +150,8 @@
 			onSuccess: onConnectSuccess,
 			onFailure: onConnectFailure,
 			userName: "use-token-auth",
-			password: window.password
+			password: window.password,
+			useSSL: true
 		});
 	}
 
