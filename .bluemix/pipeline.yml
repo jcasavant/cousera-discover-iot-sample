@@ -22,7 +22,7 @@ stages:
         script: |-
             #!/bin/bash
             cf create-service iotf-service iotf-service-free discover-iot-try-service
-            cf push "${CF_APP}"
+            cf push "${CF_APP}" -m 48M
             # View logs
             cf logs "${CF_APP}" --recent
         target: 
